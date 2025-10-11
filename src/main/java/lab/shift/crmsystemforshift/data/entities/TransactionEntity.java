@@ -2,6 +2,8 @@ package lab.shift.crmsystemforshift.data.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
 
@@ -11,17 +13,19 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "transaction")
-public class Transaction {
+@Table(name = "transactions")
+@SQLDelete(sql = "UPDATE transactions SET deletion_date = now() WHERE id=?")
+@Where(clause = "deletion_date is null")
+public class TransactionEntity {
     @Id
     @SequenceGenerator(name = "transaction_seq", sequenceName = "transaction_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "transaction_id")
-    private long sellerId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
+    @Column(name = "id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_id", nullable = false)
-    private Seller seller;
+    private SellerEntity seller;
 
     @Column(name = "amount", nullable = false)
     private double amount;
@@ -32,4 +36,7 @@ public class Transaction {
 
     @Column(name = "transaction_date", nullable = false)
     private LocalDateTime transactionDate;
+
+    @Column(name = "deletion_date")
+    private LocalDateTime deletionDate;
 }
