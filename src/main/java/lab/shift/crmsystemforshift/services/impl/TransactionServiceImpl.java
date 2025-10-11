@@ -70,7 +70,11 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    @Transactional
     public void softDeleteTransaction(long id) {
-
+        if (!transactionRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Transaction with id " + id + " not found");
+        }
+        transactionRepository.deleteById(id);
     }
 }

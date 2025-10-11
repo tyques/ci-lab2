@@ -1,13 +1,19 @@
 package lab.shift.crmsystemforshift.data.dto.response;
 
 import lab.shift.crmsystemforshift.data.entities.PaymentType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
-public record TransactionResponse(
-        Long id,
-        Long sellerId,
-        double amount,
-        PaymentType paymentType,
-        LocalDateTime transactionDate
-) {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class TransactionResponse {
+    private Long id;
+    private Long sellerId;
+    private double amount;
+    private PaymentType paymentType;
+    private LocalDateTime transactionDate;
 }
