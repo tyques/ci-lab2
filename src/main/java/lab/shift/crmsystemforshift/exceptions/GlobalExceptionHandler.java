@@ -24,6 +24,4 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
-
-    // Можно добавить обработчики для других исключений, например, MethodArgumentNotValidException
 }

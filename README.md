@@ -66,9 +66,9 @@
 
 1.  **Создайте файл `.env`** в корневой директории проекта и укажите в нем учетные данные для базы данных:
     ```env
-    POSTGRES_DB=crm_db
-    POSTGRES_USER=user
-    POSTGRES_PASSWORD=password
+    POSTGRES_DB=crmdb
+    POSTGRES_USER=crmuser
+    POSTGRES_PASSWORD=crmpassword
     ```
 
 2.  **Соберите и запустите приложение** с помощью Docker Compose. Вы можете выбрать один из профилей: `jvm` (стандартная сборка) или `native` (сборка в GraalVM Native Image).

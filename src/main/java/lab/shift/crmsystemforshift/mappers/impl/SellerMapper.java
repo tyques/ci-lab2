@@ -1,6 +1,5 @@
 package lab.shift.crmsystemforshift.mappers.impl;
 
-import lab.shift.crmsystemforshift.data.dto.requests.SellerCreateRequest;
 import lab.shift.crmsystemforshift.data.dto.response.SellerResponse;
 import lab.shift.crmsystemforshift.data.entities.SellerEntity;
 import lab.shift.crmsystemforshift.mappers.Mapper;
