@@ -35,6 +35,14 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<TransactionResponse> getAllTransactionsWithDeleted() {
+        return transactionRepository.findAllWithDeleted().stream()
+                .map(mapper::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public TransactionResponse getTransactionById(Long id) {
         return transactionRepository.findById(id)
                 .map(mapper::mapToDto)

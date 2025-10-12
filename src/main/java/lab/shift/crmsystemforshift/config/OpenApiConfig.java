@@ -1,4 +1,4 @@
-package lab.shift.crmsystemforshift.condig;
+package lab.shift.crmsystemforshift.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;

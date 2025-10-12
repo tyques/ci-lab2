@@ -32,6 +32,14 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<SellerResponse> getAllSellersWithDeleted() {
+        return sellerRepository.findAllWithDeleted().stream()
+                .map(mapper::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public SellerResponse getSellerById(Long id) {
         return sellerRepository.findById(id)
                 .map(mapper::mapToDto)

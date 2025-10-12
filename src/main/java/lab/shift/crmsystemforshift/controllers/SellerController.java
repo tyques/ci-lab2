@@ -1,5 +1,6 @@
 package lab.shift.crmsystemforshift.controllers;
 
+import jakarta.validation.Valid;
 import lab.shift.crmsystemforshift.data.dto.requests.SellerCreateRequest;
 import lab.shift.crmsystemforshift.data.dto.requests.SellerUpdateRequest;
 import lab.shift.crmsystemforshift.data.dto.response.SellerResponse;
@@ -28,19 +29,24 @@ public class SellerController {
         return ResponseEntity.ok(sellerService.getAllSellers());
     }
 
+    @GetMapping("/all-with-deleted")
+    public ResponseEntity<List<SellerResponse>> getAllSellersWithDeleted() {
+        return ResponseEntity.ok(sellerService.getAllSellersWithDeleted());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<SellerResponse> getSellerById(@PathVariable Long id) {
         return ResponseEntity.ok(sellerService.getSellerById(id));
     }
 
     @PostMapping
-    public ResponseEntity<SellerResponse> createSeller(@RequestBody SellerCreateRequest request) {
+    public ResponseEntity<SellerResponse> createSeller(@Valid @RequestBody SellerCreateRequest request) {
         SellerResponse createdSeller = sellerService.createSeller(request);
         return new ResponseEntity<>(createdSeller, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SellerResponse> updateSeller(@PathVariable Long id, @RequestBody SellerUpdateRequest request) {
+    public ResponseEntity<SellerResponse> updateSeller(@PathVariable Long id, @Valid @RequestBody SellerUpdateRequest request) {
         return ResponseEntity.ok(sellerService.updateSeller(id, request));
     }
 

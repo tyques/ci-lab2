@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface SellerService {
     List<SellerResponse> getAllSellers();
+    List<SellerResponse> getAllSellersWithDeleted();
     SellerResponse getSellerById(Long id);
     SellerResponse createSeller(SellerCreateRequest request);
     SellerResponse updateSeller(Long id, SellerUpdateRequest request);

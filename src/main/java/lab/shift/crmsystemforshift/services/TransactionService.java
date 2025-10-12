@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface TransactionService {
     List<TransactionResponse> getAllTransactions();
+    List<TransactionResponse> getAllTransactionsWithDeleted();
     TransactionResponse getTransactionById(Long id);
     List<TransactionResponse> getTransactionsBySellerId(Long sellerId);
     TransactionResponse createTransaction(TransactionCreateRequest request);

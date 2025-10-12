@@ -1,5 +1,6 @@
 package lab.shift.crmsystemforshift.controllers;
 
+import jakarta.validation.Valid;
 import lab.shift.crmsystemforshift.data.dto.requests.TransactionCreateRequest;
 import lab.shift.crmsystemforshift.data.dto.response.TransactionResponse;
 import lab.shift.crmsystemforshift.services.TransactionService;
@@ -22,13 +23,18 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.getAllTransactions());
     }
 
+    @GetMapping("/all-with-deleted")
+    public ResponseEntity<List<TransactionResponse>> getAllTransactionsWithDeleted() {
+        return ResponseEntity.ok(transactionService.getAllTransactionsWithDeleted());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<TransactionResponse> getTransactionById(@PathVariable Long id) {
         return ResponseEntity.ok(transactionService.getTransactionById(id));
     }
 
     @PostMapping
-    public ResponseEntity<TransactionResponse> createTransaction(@RequestBody TransactionCreateRequest request) {
+    public ResponseEntity<TransactionResponse> createTransaction(@Valid @RequestBody TransactionCreateRequest request) {
         TransactionResponse createdTransaction = transactionService.createTransaction(request);
         return new ResponseEntity<>(createdTransaction, HttpStatus.CREATED);
     }
