@@ -42,3 +42,11 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+// Скачивает всё, что нужно для bootJar, без исходников — для кэшируемого слоя в Dockerfile
+tasks.register('resolveDependencies') {
+    def classpaths = [configurations.compileClasspath, configurations.annotationProcessor, configurations.runtimeClasspath]
+    doLast {
+        classpaths.each { it.resolve() }
+    }
+}
