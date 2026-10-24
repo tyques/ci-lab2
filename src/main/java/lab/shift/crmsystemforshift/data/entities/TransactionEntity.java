@@ -3,7 +3,7 @@ package lab.shift.crmsystemforshift.data.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Table(name = "transactions")
 @SQLDelete(sql = "UPDATE transactions SET deletion_date = now() WHERE id=?")
-@Where(clause = "deletion_date is null")
+@SQLRestriction("deletion_date is null")
 public class TransactionEntity {
     @Id
     @SequenceGenerator(name = "transaction_seq", sequenceName = "transaction_sequence")

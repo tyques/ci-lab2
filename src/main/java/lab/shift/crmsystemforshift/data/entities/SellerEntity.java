@@ -3,7 +3,7 @@ package lab.shift.crmsystemforshift.data.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.SQLRestriction;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -20,7 +20,7 @@ import java.util.List;
 @Table(name = "sellers")
 @EntityListeners(AuditingEntityListener.class)
 @SQLDelete(sql = "UPDATE sellers SET deletion_date = now() WHERE id=?")
-@Where(clause = "deletion_date is null")
+@SQLRestriction("deletion_date is null")
 public class SellerEntity {
     @Id
     @SequenceGenerator(name = "seller_seq", sequenceName = "seller_sequence")
